@@ -61,6 +61,7 @@ export default function Home() {
   };
 
   const social = [
+    { href: 'https://github.com/havishpallerla', alt: 'github' },
     { href: 'https://linkedin.com/in/havishpallerla', alt: 'linkedin' },
     { href: 'https://discord.com/users/248496824506253322', alt: 'discord' },
     { href: 'mailto:pallerla@umich.edu', alt: 'email' },
