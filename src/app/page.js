@@ -36,7 +36,7 @@ const ROLES = [
     title: 'Software Fellow',
     company: 'Google',
     dates: 'Sep. 2022 — Aug. 2024',
-    desc: 'Google Code Next',
+    desc: 'Google\'s Code Next',
   },
 ];
 
