@@ -10,9 +10,15 @@ const inter = Inter({ subsets: ['latin'] });
 const ROLES = [
   {
     title: 'Software Engineering Internship',
+    company: 'Gemini',
+    dates: 'May 2026 — Aug. 2026',
+    desc: 'Predictions, Summer 2026',
+  },
+  {
+    title: 'Software Engineering Internship',
     company: 'Humana',
     dates: 'May 2025 — Dec. 2025',
-    desc: 'Optimized Resource-Based Interface Tool (Project ORBIT)',
+    desc: 'Enterprise Search, Summer & Fall 2025',
   },
   {
     title: 'Software Research',
