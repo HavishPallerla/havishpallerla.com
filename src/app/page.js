@@ -28,7 +28,7 @@ const ROLES = [
   },
   {
     title: 'Software Research',
-    company: 'College of Engineering at UMich',
+    company: 'University of Michigan',
     dates: 'Sep. 2024 — March 2025',
     desc: 'The Future of Programming Lab (Project Hazel); advised by Dr. Cyrus Omar',
   },
