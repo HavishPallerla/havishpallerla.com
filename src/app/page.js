@@ -32,6 +32,12 @@ const ROLES = [
     dates: 'Sep. 2024 — March 2025',
     desc: 'The Future of Programming Lab (Project Hazel); advised by Dr. Cyrus Omar',
   },
+  {
+    title: 'Software Fellow',
+    company: 'Google',
+    dates: 'Sep. 2022 — Aug. 2024',
+    desc: 'Google Code Next',
+  },
 ];
 
 const EDUCATION = [
