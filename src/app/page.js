@@ -43,7 +43,7 @@ const ROLES = [
 const EDUCATION = [
   {
     school: 'University of Michigan — Ann Arbor',
-    degree: 'Computer Science',
+    degree: 'B.S. in Computer Science',
     dates: 'May 2028',
   },
 ];
