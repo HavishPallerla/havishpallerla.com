@@ -21,7 +21,7 @@ const ROLES = [
     desc: 'Enterprise Search, Summer & Fall 2025',
   },
   {
-    title: 'Software Research',
+    title: 'Software Engineering Fellowship',
     company: 'NASA',
     dates: 'Jan. 2025 — May 2025',
     desc: 'Worked on VULCAN research and tooling for space systems.',
@@ -33,7 +33,7 @@ const ROLES = [
     desc: 'The Future of Programming Lab (Project Hazel); advised by Dr. Cyrus Omar',
   },
   {
-    title: 'Software Fellow',
+    title: 'Software Engineering Fellowship',
     company: 'Google',
     dates: 'Sep. 2022 — Aug. 2024',
     desc: 'Google\'s Code Next',
