@@ -129,9 +129,9 @@ export default function ProjectsPage() {
       </header>
 
       <main className="resume-container z-30">
-        <section className="timeline" style={{ textAlign: 'center' }}>
+        <section className="timeline">
           {projects.map((p, i) => (
-            <a key={i} href={p.href} className="timeline-row" style={{ display: 'block' }}>
+            <a key={i} href={p.href} className="timeline-row">
               <div>
                 <div className="role-title">{p.title}</div>
                 <div className="role-desc">{p.description}</div>
