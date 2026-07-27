@@ -24,7 +24,8 @@ const ROLES = [
     title: 'Software Engineering Fellowship',
     company: 'NASA',
     dates: 'Jan. 2025 — May 2025',
-    desc: 'Worked on VULCAN research and tooling for space systems.',
+    desc: 'C++ spacecraft reliability simulations and automated testing pipelines for mission validation.',
+    href: 'https://drive.google.com/file/u/4/d/1yvst4PU2PZ5v0HYt2fmTO4s8bDm6zclV/view?usp=sharing',
   },
   {
     title: 'Software Research',
@@ -156,13 +157,23 @@ export default function Home() {
 
           <section className="timeline">
             {ROLES.map((r, idx) => (
-              <div key={idx} className="timeline-row">
-                <div className="role-left">
-                  <div className="role-title">{r.title} <span className="role-company">{r.company}</span></div>
-                  <div className="role-desc">{r.desc}</div>
+              r.href ? (
+                <a key={idx} href={r.href} target="_blank" rel="noopener noreferrer" className="timeline-row">
+                  <div className="role-left">
+                    <div className="role-title">{r.title} <span className="role-company">{r.company}</span></div>
+                    <div className="role-desc">{r.desc}</div>
+                  </div>
+                  <div className="role-dates">{r.dates}</div>
+                </a>
+              ) : (
+                <div key={idx} className="timeline-row">
+                  <div className="role-left">
+                    <div className="role-title">{r.title} <span className="role-company">{r.company}</span></div>
+                    <div className="role-desc">{r.desc}</div>
+                  </div>
+                  <div className="role-dates">{r.dates}</div>
                 </div>
-                <div className="role-dates">{r.dates}</div>
-              </div>
+              )
             ))}
           </section>
 
