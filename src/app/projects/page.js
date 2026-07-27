@@ -8,27 +8,28 @@ const inter = Inter({ subsets: ['latin'] });
 
 const projects = [
   {
-    title: 'SideQuest App',
-    description: 'A full-stack travel platform with personalized itineraries and Google Maps integration.',
-    right: 'Jan 2025',
-    href: '#'
-  },
-  {
-    title: "Arcode",
-    description: 'A gamified coding platform combining arcade-style challenges with progress tracking.',
-    right: 'Dec 2024',
+    title: 'Fleet Route Optimization Engine',
+    description: 'Multi-vehicle routing engine with live rerouting and a React and Mapbox interface visualizing routes and task queues.',
     href: '#'
   },
   {
     title: 'Smart Email Triage System',
     description: 'Intelligent NLP-powered email classification and routing for customer support.',
-    right: 'Nov 2024',
+    href: '#'
+  },
+  {
+    title: 'SideQuest App',
+    description: 'A full-stack travel platform with personalized itineraries and Google Maps integration.',
+    href: '#'
+  },
+  {
+    title: "Arcode",
+    description: 'A gamified coding platform combining arcade-style challenges with progress tracking.',
     href: '#'
   },
   {
     title: "VoiceBiometric Auth",
     description: 'Voice biometric fraud detection integrated into Salesforce and Pindrop APIs.',
-    right: 'Oct 2024',
     href: '#'
   }
 ];
@@ -135,7 +136,6 @@ export default function ProjectsPage() {
                 <div className="role-title">{p.title}</div>
                 <div className="role-desc">{p.description}</div>
               </div>
-              <div className="role-dates">{p.right}</div>
             </a>
           ))}
         </section>
