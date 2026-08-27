@@ -11,33 +11,39 @@ const ROLES = [
   {
     title: 'Software Engineering Internship',
     company: 'Gemini',
-    dates: 'May 2026 — Aug. 2026',
+    dates: 'May 2026 — August 2026',
     desc: 'Predictions, Summer 2026',
   },
   {
     title: 'Software Engineering Internship',
     company: 'Humana',
-    dates: 'May 2025 — Dec. 2025',
+    dates: 'May 2025 — December 2025',
     desc: 'Enterprise Search, Summer & Fall 2025',
   },
   {
     title: 'Software Engineering Fellowship',
     company: 'NASA',
-    dates: 'Jan. 2025 — May 2025',
+    dates: 'January 2025 — May 2025',
     desc: 'C++ spacecraft reliability simulations and automated testing pipelines for mission validation.',
     href: 'https://drive.google.com/file/u/4/d/1yvst4PU2PZ5v0HYt2fmTO4s8bDm6zclV/view?usp=sharing',
   },
   {
     title: 'Software Research',
     company: 'University of Michigan',
-    dates: 'Sep. 2024 — March 2025',
+    dates: 'September 2024 — March 2025',
     desc: 'The Future of Programming Lab (Project Hazel); advised by Dr. Cyrus Omar',
   },
   {
     title: 'Software Engineering Fellowship',
     company: 'Google',
-    dates: 'Sep. 2022 — Aug. 2024',
+    dates: 'April 2025 — September 2024',
     desc: 'Google\'s Code Next',
+  },
+  {
+    title: 'Founder & Lead Software Engineer',
+    company: 'Oakland IT Services',
+    dates: 'September 2021 — August 2024',
+    desc: 'Started with my dad :)',
   },
 ];
 

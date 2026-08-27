@@ -18,8 +18,13 @@ const projects = [
     href: '#'
   },
   {
-    title: 'SideQuest App',
-    description: 'A full-stack travel platform with personalized itineraries and Google Maps integration.',
+    title: 'Stock App',
+    description: 'A stock tracking application with real-time data and interactive visualizations.',
+    href: '#'
+  },
+  {
+    title: 'Lyric App',
+    description: 'An app for discovering and displaying song lyrics with search and filtering capabilities.',
     href: '#'
   },
   {
