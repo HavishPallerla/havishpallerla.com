@@ -24,7 +24,7 @@ const ROLES = [
     title: 'Software Engineering Fellowship',
     company: 'NASA',
     dates: 'January 2025 — May 2025',
-    desc: 'C++ spacecraft reliability simulations and automated testing pipelines for mission validation.',
+    desc: 'Python spacecraft reliability simulations and automated testing pipelines for mission validation.',
     href: 'https://drive.google.com/file/u/4/d/1yvst4PU2PZ5v0HYt2fmTO4s8bDm6zclV/view?usp=sharing',
   },
   {
