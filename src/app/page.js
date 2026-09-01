@@ -45,7 +45,7 @@ const ROLES = [
     title: 'Founder & Lead Software Engineer',
     company: 'Oakland IT Services',
     dates: 'September 2021 — August 2024',
-    desc: 'Started with my dad :)',
+    desc: 'I started this with my dad :)',
   },
 ];
 
