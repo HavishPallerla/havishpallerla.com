@@ -1,73 +1,67 @@
-"use client";
+'use client';
 
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useTheme } from '../../components/useTheme';
+import { Header, ThemeToggle } from '../../components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const projects = [
   {
-    title: 'Fleet Route Optimization Engine',
-    description: 'Multi-vehicle routing engine with live rerouting and a React and Mapbox interface visualizing routes and task queues.',
-    href: '#'
-  },
-  {
-    title: 'Smart Email Triage System',
-    description: 'Intelligent NLP-powered email classification and routing for customer support.',
-    href: '#'
-  },
-  {
     title: 'Stock App',
     description: 'A stock tracking application with real-time data and interactive visualizations.',
-    href: '#'
+    href: 'https://github.com/HavishPallerla/stock-app'
   },
   {
     title: 'Lyric App',
     description: 'An app for discovering and displaying song lyrics with search and filtering capabilities.',
-    href: '#'
+    href: 'https://github.com/HavishPallerla/lyric-app'
+  },
+  {
+    title: 'Fleet Route Optimization Engine',
+    description: 'Multi-vehicle routing engine with live rerouting and a React and Mapbox interface visualizing routes and task queues.',
+  },
+  {
+    title: 'Smart Email Triage System',
+    description: 'Intelligent NLP-powered email classification and routing for customer support.',
   },
   {
     title: "Arcode",
     description: 'A gamified coding platform combining arcade-style challenges with progress tracking.',
-    href: '#'
   },
   {
     title: "VoiceBiometric Auth",
     description: 'Voice biometric fraud detection integrated into Salesforce and Pindrop APIs.',
-    href: '#'
   }
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut', delay: i * 0.06 },
+  }),
+};
+
+function handlePointerMove(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+  e.currentTarget.style.setProperty('--my', `${e.clientY - rect.top}px`);
+}
+
 export default function ProjectsPage() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = savedTheme ? savedTheme === 'dark' : false;
-    setIsDark(prefersDark);
-    const root = document.documentElement;
-    if (prefersDark) root.classList.add('dark');
-    else root.classList.remove('dark');
-  }, []);
-
-  const toggleTheme = (newState) => {
-    setIsDark(newState);
-    const root = document.documentElement;
-    if (newState) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  const { isDark, toggleTheme } = useTheme();
 
   return (
     <div className={`site-root ${inter.className}`}>
-      <header className="hero">
-        <nav className="flex items-center justify-between px-8 py-6 relative z-20">
-          <div className="flex gap-6 items-center">
+      <Header
+        title="Projects"
+        subtitle="A curated selection of projects that reflect my passions and interests."
+        nav={
+          <>
             <Link href="/" className="hover:opacity-70 transition-opacity" aria-label="Home">
               <svg
                 className="h-5 w-5"
@@ -82,68 +76,51 @@ export default function ProjectsPage() {
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
             </Link>
-          </div>
-          <button
-            onClick={() => toggleTheme(!isDark)}
-            className="p-2 rounded-md bg-transparent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent/30"
-            aria-label="Toggle color theme"
-          >
-            {isDark ? (
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-                style={{ color: 'white' }}
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-              </svg>
-            ) : (
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-                style={{ color: 'var(--foreground)' }}
-              >
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-              </svg>
-            )}
-          </button>
-        </nav>
-
-        <div className="site-title">
-          <div className="name">Projects</div>
-          <div className="subtitle">A curated selection of projects that reflect my passions and interests.</div>
-        </div>
-
-        <div className="timeline-arc" aria-hidden>
-          <svg viewBox="0 0 1600 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,120 C400,20 1200,20 1600,120" fill="none" stroke="var(--line)" strokeWidth="1" />
-          </svg>
-        </div>
-      </header>
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+          </>
+        }
+      />
 
       <main className="resume-container z-30">
-        <section className="timeline">
-          {projects.map((p, i) => (
-            <a key={i} href={p.href} className="timeline-row">
-              <div>
-                <div className="role-title">{p.title}</div>
-                <div className="role-desc">{p.description}</div>
-              </div>
-            </a>
-          ))}
-        </section>
+        <div className="project-grid">
+          {projects.map((p, i) => {
+            const Card = p.href ? motion.a : motion.div;
+            return (
+              <Card
+                key={i}
+                href={p.href}
+                target={p.href ? '_blank' : undefined}
+                rel={p.href ? 'noopener noreferrer' : undefined}
+                className="project-card"
+                onMouseMove={handlePointerMove}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                variants={cardVariants}
+              >
+                <div className="project-card-title">
+                  {p.title}
+                  {p.href ? (
+                    <svg
+                      className="project-card-arrow h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden
+                    >
+                      <path d="M5 12h14M13 5l7 7-7 7" />
+                    </svg>
+                  ) : null}
+                </div>
+                <div className="project-card-desc">{p.description}</div>
+              </Card>
+            );
+          })}
+        </div>
       </main>
     </div>
   );

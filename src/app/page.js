@@ -2,8 +2,10 @@
 
 import { Inter } from 'next/font/google';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { useTheme } from '../components/useTheme';
+import { Header, ThemeToggle } from '../components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -55,29 +57,17 @@ const EDUCATION = [
   },
 ];
 
+const rowVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: 'easeOut', delay: i * 0.05 },
+  }),
+};
+
 export default function Home() {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = savedTheme ? savedTheme === 'dark' : false;
-    setIsDark(prefersDark);
-    const root = document.documentElement;
-    if (prefersDark) root.classList.add('dark');
-    else root.classList.remove('dark');
-  }, []);
-
-  const toggleTheme = (newState) => {
-    setIsDark(newState);
-    const root = document.documentElement;
-    if (newState) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  const { isDark, toggleTheme } = useTheme();
 
   const social = [
     { href: 'https://github.com/havishpallerla', alt: 'github' },
@@ -88,112 +78,99 @@ export default function Home() {
   ];
 
   return (
-    <>
-      <div className={`site-root ${inter.className}`}>
-        <header className="hero">
-          <nav className="flex items-center justify-between px-8 py-6 relative z-20">
+    <div className={`site-root ${inter.className}`}>
+      <Header
+        title="Havish Pallerla"
+        nav={
+          <>
             <div className="flex gap-6">
-              <Link href="/projects" className="text-sm hover:opacity-70 transition-opacity">
+              <Link href="/projects" className="nav-link hover:opacity-90">
                 Projects
               </Link>
             </div>
-            <button
-              onClick={() => toggleTheme(!isDark)}
-              className="p-2 rounded-md bg-transparent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent/30"
-              aria-label="Toggle color theme"
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+          </>
+        }
+      />
+
+      <main className="resume-container z-30">
+        <section className="timeline">
+          {EDUCATION.map((e, i) => (
+            <motion.div
+              key={i}
+              className="timeline-row"
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
+              variants={rowVariants}
             >
-              {isDark ? (
-                <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                  style={{ color: 'white' }}
-                >
-                  <circle cx="12" cy="12" r="4" />
-                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-                </svg>
-              ) : (
-                <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                  style={{ color: 'var(--foreground)' }}
-                >
-                  <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-                </svg>
-              )}
-            </button>
-          </nav>
-
-          <div className="site-title">
-            <div className="name">Havish Pallerla</div>
-          </div>
-
-          <div className="timeline-arc" aria-hidden>
-            <svg viewBox="0 0 1600 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0,120 C400,20 1200,20 1600,120" fill="none" stroke="var(--line)" strokeWidth="1" />
-            </svg>
-          </div>
-        </header>
-
-        <main className="resume-container z-30">
-          <section className="timeline">
-            {EDUCATION.map((e, i) => (
-              <div key={i} className="timeline-row">
-                <div>
-                  <div className="role-title">{e.school}</div>
-                  <div className="role-desc">{e.degree}</div>
-                </div>
-                <div className="role-dates">{e.dates}</div>
+              <div>
+                <div className="role-title">{e.school}</div>
+                <div className="role-desc">{e.degree}</div>
               </div>
-            ))}
+              <div className="role-dates">{e.dates}</div>
+            </motion.div>
+          ))}
 
-            <div className="education-sep" aria-hidden />
-          </section>
+          <div className="education-sep" aria-hidden />
+        </section>
 
-          <section className="timeline">
-            {ROLES.map((r, idx) => (
-              r.href ? (
-                <a key={idx} href={r.href} target="_blank" rel="noopener noreferrer" className="timeline-row">
-                  <div className="role-left">
-                    <div className="role-title">{r.title} <span className="role-company">{r.company}</span></div>
-                    <div className="role-desc">{r.desc}</div>
+        <section className="timeline">
+          {ROLES.map((r, idx) => {
+            const content = (
+              <>
+                <div className="role-left">
+                  <div className="role-title">
+                    {r.title} <span className="role-company">{r.company}</span>
                   </div>
-                  <div className="role-dates">{r.dates}</div>
-                </a>
-              ) : (
-                <div key={idx} className="timeline-row">
-                  <div className="role-left">
-                    <div className="role-title">{r.title} <span className="role-company">{r.company}</span></div>
-                    <div className="role-desc">{r.desc}</div>
-                  </div>
-                  <div className="role-dates">{r.dates}</div>
+                  <div className="role-desc">{r.desc}</div>
                 </div>
-              )
-            ))}
-          </section>
+                <div className="role-dates">{r.dates}</div>
+              </>
+            );
 
-          <div className="links-row">
-            <div className="links-left flex items-center">
-              {social.map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer">
-                  <Image className="social-icon" src={isDark ? `/icons/${s.alt}-dark.svg` : `/icons/${s.alt}.svg`} alt={s.alt} width={20} height={20} />
-                </a>
-              ))}
-            </div>
+            return r.href ? (
+              <motion.a
+                key={idx}
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="timeline-row"
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                variants={rowVariants}
+              >
+                {content}
+              </motion.a>
+            ) : (
+              <motion.div
+                key={idx}
+                className="timeline-row"
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                variants={rowVariants}
+              >
+                {content}
+              </motion.div>
+            );
+          })}
+        </section>
+
+        <div className="links-row">
+          <div className="links-left flex items-center">
+            {social.map((s, i) => (
+              <a key={i} href={s.href} target="_blank" rel="noopener noreferrer">
+                <Image className="social-icon" src={isDark ? `/icons/${s.alt}-dark.svg` : `/icons/${s.alt}.svg`} alt={s.alt} width={20} height={20} />
+              </a>
+            ))}
           </div>
-        </main>
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   );
 }
