@@ -1,18 +1,23 @@
-import "./globals.css";
-import { Analytics } from "@vercel/analytics/next";
+import './globals.css';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
-  title: 'Havish',
-  description: 'Studying Computer Science at UMich. Stuff I build goes here.',
+  title: 'Havish Pallerla — Software Engineer',
+  description: 'Havish Pallerla is a computer science student at the University of Michigan who builds useful software across the stack.',
+  metadataBase: new URL('https://havishpallerla.com'),
+  openGraph: {
+    title: 'Havish Pallerla — Software Engineer',
+    description: 'Software engineering and projects by Havish Pallerla.',
+    url: 'https://havishpallerla.com',
+    siteName: 'Havish Pallerla',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body className="antialiased transition-colors duration-300">
+      <body>
         {children}
         <Analytics />
       </body>
