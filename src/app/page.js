@@ -21,7 +21,6 @@ export default function Home() {
         <section className="section" id="current">
           <h2>currently</h2>
           <p>I&apos;m interested in building software people use every day, from the applications they interact with to the systems behind them.</p>
-          <p>I&apos;d like to work across back-end engineering, data systems, infrastructure, and applied machine learning.</p>
         </section>
 
         <section className="section" id="work">
