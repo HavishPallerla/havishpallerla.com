@@ -20,9 +20,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {children}
-        <footer className="privacy-note">
-          This site logs approximate city and region inferred from your IP address. It does not log your IP address or collect precise GPS location.
-        </footer>
         <VisitorTracker />
         <Analytics />
       </body>
